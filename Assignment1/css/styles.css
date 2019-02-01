@@ -6,7 +6,7 @@ B01
 */
 
 html, body {
-    background: white;
+    background-color: #F0F0F0;
     font-family: "Arial";
     margin: 0;
 }
@@ -147,6 +147,7 @@ header, article {
 #welcome_header span {
     margin: 0;
     color: white;
+    text-shadow: 2px 2px 10px #484848;
 }
 
 #welcome_header h1 {
@@ -159,7 +160,6 @@ header, article {
 
 #bottom_article {
     background: white;
-
     display: flex;
     flex-flow: row wrap;
     text-align: center;
@@ -205,4 +205,16 @@ header, article {
     border-left: 4px solid #1DB954;
     padding-left: 10px;
     font-style: italic;
+}
+
+@media only screen and (min-width: 1200px) {
+    #bottom_article {
+        width: 75%;
+    }
+}
+
+@media only screan and (max-width: 1200px) {
+    #bottom_article {
+        width: 100%;
+    }
 }
