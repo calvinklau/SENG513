@@ -1,6 +1,5 @@
 window.addEventListener("load", function() {
     initializeBtnListeners();
-    initializeClearListener();
 });
 
 function initializeBtnListeners() {
@@ -12,18 +11,22 @@ function initializeBtnListeners() {
     }
 }
 
-function initializeClearListener() {
-    // resultString.addEventListener("ValueChange")
-}
-
 function processClick(input) {
     let resultElement = document.getElementById("result");
     switch (input) {
-        case "C":
-            if (resultElement.value === "0") {
+        case "CE":
+            if (resultElement.value[resultElement.value.length - 1] === " ") {
+                // Delete operator and associated space chars
+                resultElement.value = resultElement.value.substring(0, resultElement.value.length - 3);
+            } else if (resultElement.value === "0"){
+                // Ignore if input equals 0
                 break;
-            } else {
+            } else if (resultElement.value.length === 1) {
+                // Change input to 0 when deleting last character that is not zero
                 resultElement.value = "0";
+            } else {
+                // Delete rightmost character
+                resultElement.value = resultElement.value.substring(0, resultElement.value.length - 1);
             }
             break;
         case "=":
@@ -47,17 +50,21 @@ function processClick(input) {
         case "x":
         case "-":
         case "+":
-            resultElement.value += " " + input + " ";
+            if (resultElement.value[resultElement.value.length - 1] === " ") {
+                if (resultElement.value[resultElement.value.length - 2] === input) {
+                    break;
+                } else {
+                    resultElement.value = resultElement.value.substring(0, resultElement.value.length - 2) + input + " ";
+                }
+            } else {
+                resultElement.value += " " + input + " ";
+            }
             break;
         default:
             if (resultElement.value === "0") {
                 resultElement.value = input;
             } else {
                 resultElement.value += input;
-            }
-
-            if (input !== "C" && resultElement.value.length > 1) {
-                document.getElementById("clear").innerText = "CE";
             }
             break;
     }
