@@ -1,0 +1,67 @@
+.container-fluid {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.jumbotron {
+    margin-top: 100px;
+}
+
+.history_box {
+    margin-top: -40px;
+    text-align: right;
+}
+
+#result {
+    height: 80px;
+    width: 100%;
+    border: none;
+    padding-right: 5px;
+    text-align: right;
+}
+
+.result_box {
+    margin: 0 0 30px;
+    height: 80px;
+    text-align: right;
+
+    font-size: 55px;
+}
+
+.button-wrapper {
+    padding: 5px 0;
+}
+
+.btn {
+    width: 80%;
+    font-size: 25px;
+}
+
+.btn-secondary {
+    background-color: #B7B6BF;
+    border: none;
+}
+
+.btn-c {
+    width: 90%;
+}
+
+.button-wrapper:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .jumbotron {
+        width: 600px;
+    }
+}
