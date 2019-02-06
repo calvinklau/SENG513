@@ -6,8 +6,14 @@
     text-align: center;
 }
 
+h1 {
+    padding-top: 5px;
+    color: #4C4B4F;
+    text-align: center;
+}
+
 .jumbotron {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .history_box {
@@ -47,12 +53,18 @@
     border: none;
 }
 
-.btn-c {
+#clear {
     width: 90%;
 }
 
 .button-wrapper:hover {
     cursor: pointer;
+}
+
+.btn:focus,
+.btn:active,
+.btn:active:focus {
+    outline: none;
 }
 
 @media (min-width: 576px) {

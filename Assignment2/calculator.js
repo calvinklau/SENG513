@@ -45,6 +45,11 @@ function processClick(input) {
         case "0":
             if (resultElement.value === "0") {
                 break;
+            } else if (historyElement.value !== " " &&
+                Number(resultElement.value) > 0 &&
+                computeFlag === true) {
+                resultElement.value = input;
+                computeFlag = false;
             } else {
                 resultElement.value += input;
             }
@@ -65,13 +70,24 @@ function processClick(input) {
             break;
         case "(":
         case ")":
-            resultElement.value += " " + input + " ";
+            if (resultElement.value === "0") {
+                resultElement.value = input;
+            } else if (historyElement.value !== " " &&
+                Number(resultElement.value) > 0 &&
+                computeFlag === true) {
+                resultElement.value = input;
+                computeFlag = false;
+            } else {
+                resultElement.value += " " + input + " ";
+            }
             break;
         default:
             if (resultElement.value === "0") {
                 resultElement.value = input;
-            } else if (historyElement.value !== " " && Number(resultElement.value) > 0 &&
+            } else if (historyElement.value !== " " &&
+                        Number(resultElement.value) > 0 &&
                         computeFlag === true) {
+                // Replace previous answer with new digit
                 resultElement.value = input;
                 computeFlag = false;
             } else {
@@ -91,6 +107,7 @@ function processInput() {
 
     if (val === false) {
         historyElement.innerText = resultElement.value + " =ERROR";
+
         return;
     } else {
         computeFlag = true;
@@ -103,7 +120,11 @@ function calculate(inputString) {
     let inputArray = inputString.split(" ");
 
     if (inputArray.length === 1) {
-        return inputArray[0];
+        if (isNaN(inputArray[0])) {
+            return false;
+        } else {
+            return inputArray[0];
+        }
     }
 
     let result = 0;
@@ -115,15 +136,19 @@ function calculate(inputString) {
         switch (inputArray[i]) {
             case "/":
                 result = Number(inputArray[i-1]) / Number(inputArray[i+1]);
+                inputArray = inputArray.splice(inputArray[i-1], 3, result);
                 break;
             case "x":
                 result = Number(inputArray[i-1]) * Number(inputArray[i+1]);
+                inputArray = inputArray.splice(inputArray[i-1], 3, Number(result));
                 break;
             case "-":
                 result = Number(inputArray[i-1]) - Number(inputArray[i+1]);
+                inputArray = inputArray.splice(inputArray[i-1], 3, result);
                 break;
             case "+":
                 result = Number(inputArray[i-1]) + Number(inputArray[i+1]);
+                inputArray = inputArray.splice(inputArray[i-1], 3, result);
                 break;
         }
     }
