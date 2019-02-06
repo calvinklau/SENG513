@@ -19,8 +19,10 @@
     height: 80px;
     width: 100%;
     border: none;
+    border-radius: .25rem;
     padding-right: 5px;
     text-align: right;
+    color: #535357;
 }
 
 .result_box {
